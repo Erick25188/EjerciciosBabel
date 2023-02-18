@@ -7,8 +7,8 @@ export const fetchRazas = async(raza) => {
     const datos = await response.json();
     // console.log(datos.message);
     if (datos.code === 404 || datos.message.length === 0) {
-    //  console.log('error al recolectar datos');
-        return datos
+     console.log(datos);
+        return datos;
     } else {
         return datos;
     }

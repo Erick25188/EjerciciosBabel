@@ -127,7 +127,7 @@ class PerroApp extends LitElement {
         this.raza = inputPerro;
         const datos = await fetchRazas(this.raza);
 
-        if( datos.message.length === 0){ 
+        if( datos.code === 404){ 
             this.sinDatosConsulta = true;
             this.banderaImg = true;
             setTimeout(() => {
