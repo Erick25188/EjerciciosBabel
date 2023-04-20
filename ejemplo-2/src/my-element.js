@@ -181,9 +181,7 @@ class PerroApp extends LitElement {
                     ? nothing
                     : !this.sinDatosConsulta
                         ? html`<imagen-perro .img=${this.img} class="row row-cols-1 row-cols-md-3 g-4 mt-5 fondo-rosa p-5 m-2 rounded"></imagen-perro>`
-                        : html`<h1>No existe en la busqueda</h1>`
-                   
-                    
+                        : html`<h1>No existe en la busqueda</h1>`  
                 }
                     
             </div>

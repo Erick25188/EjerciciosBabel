@@ -28,7 +28,6 @@ export class GetData extends LitElement {
             .then( response => {
                 // console.log(response);
                 if( response.ok ) return response.json();
-                return Promise.reject(response);
             })
                 .then( data => this._sendData(data))
                 .catch( error => console.log(`Shomething went wrong: ${error}`));
