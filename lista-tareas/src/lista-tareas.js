@@ -34,13 +34,15 @@ class ListaTareas extends LitElement {
   _validarInput(valor) {
     if (valor === '') {
       console.log('esta vacio');
-      this.campoVacio = true
+      this.campoVacio = true;
+      this.requestUpdate();
       return;
     }
     this.campoVacio = false;
     this.listaTareas = [...this.listaTareas, { tarea: valor, completado: false }];
     localStorage.setItem("listaTareas", JSON.stringify(this.listaTareas));
     console.log(this.listaTareas);
+    this.requestUpdate();
   }
 
   _submit(e) {
@@ -66,6 +68,12 @@ class ListaTareas extends LitElement {
     this.requestUpdate();
   }
 
+  handleTaskRemoved(e) {
+    const { index } = e.detail;
+    this.listaTareas = this.listaTareas.filter((_, i) => i !== index);
+    localStorage.setItem("listaTareas", JSON.stringify(this.listaTareas));
+    this.requestUpdate();
+  }
 
   render() {
 
@@ -96,7 +104,13 @@ class ListaTareas extends LitElement {
   <div class="container mb-5">
     <div class="row justify-content-center mt-5 " >
       <div class="col-md-8 ">
-        <item-list .listaTareas=${this.listaTareas} .campoVacio=${this.campoVacio} .hideCompleted=${this.hideCompleted}></item-list>
+      <item-list
+      .listaTareas=${this.listaTareas}
+      .campoVacio=${this.campoVacio}
+      .hideCompleted=${this.hideCompleted}
+      @task-removed=${this.handleTaskRemoved}
+    ></item-list>
+       
       </div>
     </div>
   </div>

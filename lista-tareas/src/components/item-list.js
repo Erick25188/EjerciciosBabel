@@ -27,33 +27,31 @@ export class ItemList extends LitElement {
       }
   /******************* toma el indice del arreglo, el arreglo se divide en dos partes antes del indice y despues ********************/
 
-      _eliminar( index ) {
-        // this.listaTareas = [...this.listaTareas.slice(0, index), ...this.listaTareas.slice(index + 1)];
-      this.listaTareas = this.listaTareas.filter( (_,i) => i !== index );
-      localStorage.setItem("listaTareas", JSON.stringify(this.listaTareas));
-      }
+  _eliminar(index) {
+    this.dispatchEvent(
+      new CustomEvent("task-removed", {
+        detail: { index },
+        bubbles: true,
+        composed: true
+      })
+    );
+  }
   
-    render() {
-        return html`
-        <ul class="list-group ">
-        ${
-          this.listaTareas.map( (tarea,index) => html`
-            <li
-              class="list-group-item d-flex align-items-center ${this.hideCompleted && tarea.completado ? 'd-none' : tarea.completado ? 'bg-gray' : 'd-block'}
-                                                                ">
-                <input class="form-check-input me-1" type="checkbox" ?checked=${tarea.completado} @change="${()=>this.onchange(index)}"> 
-                <label
-                  class="form-check-label" 
-                  for="firstCheckbox"
-                  class="${tarea.completado ? 'text-decoration-line-through fw-bold ' : nothing}"
-                  > ${tarea.tarea}</label>
-                <button class="btn btn-danger ms-auto" @click=${() => this._eliminar(index)}>Eliminar</button> 
-            </li>
-          `)
-        }
+  render() {
+    const tasks = this.listaTareas || [];
+  
+    return html`
+      <ul class="list-group">
+        ${tasks.map((tarea, index) => html`
+          <li class="list-group-item d-flex align-items-center ${this.hideCompleted && tarea.completado ? 'd-none' : tarea.completado ? 'bg-gray' : 'd-block'}">
+            <input class="form-check-input me-1" type="checkbox" ?checked=${tarea.completado} @change="${() => this.onchange(index)}">
+            <label class="form-check-label ${tarea.completado ? 'text-decoration-line-through fw-bold' : nothing}">${tarea.tarea}</label>
+            <button class="btn btn-danger ms-auto" @click=${() => this._eliminar(index)}>Eliminar</button>
+          </li>
+        `)}
       </ul>
-        `;
-    }
+    `;
+  }
 
 }
 
