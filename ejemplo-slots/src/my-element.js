@@ -41,7 +41,7 @@ export class MyElement extends LitElement {
       </div>
     </div>
     `
-  }
+  }    
 
   _onClick() {
     this.count++
