@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Lit</title>
+    <link rel="stylesheet" href="./src/index.css" />
+    <script type="module" src="/src/my-element.js"></script>
+  </head>
+  <body>
+    <my-element>
+      <p slot="contenido">Este es el contenido personalizado que se agregará en el slot "contenido".</p>
+      <p slot="pie-de-pagina">Este es el pie de página personalizado que se agregará en el slot "pie-de-pagina".</p>
+    </my-element>
+    <my-element>
+      <p slot="contenido">Otro contenido personalizado en el slot "contenido".</p>
+    <p slot="pie-de-pagina">Otro pie de página personalizado en el slot "pie-de-pagina".</p>
+    </my-element>
+  </body>
+</html>
