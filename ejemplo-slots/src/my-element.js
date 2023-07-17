@@ -40,7 +40,7 @@ export class MyElement extends LitElement {
         <slot name="pie-de-pagina"></slot>
       </div>
     </div>
-    <p>nuevas cosasa<p>
+    <p>nuevas cosasa mas<p>
     `
   }    
 
